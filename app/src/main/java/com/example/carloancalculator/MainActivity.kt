@@ -34,19 +34,29 @@ class MainActivity : AppCompatActivity() {
                 Toast.LENGTH_SHORT).show()
         }
         else{
-            var carLoan : Double = carPrice.text.toString().toDouble() - downPayment.text.toString().toDouble()
-            var interest : Double = carLoan * (interestRate.text.toString().toDouble()/100) * loanPeriod.text.toString().toDouble()
-            var monthlyRepayment : Double = (carLoan + interest) / loanPeriod.text.toString().toDouble() / 12
+            val carLoan : Double = carPrice.text.toString().toDouble() - downPayment.text.toString().toDouble()
+            val interest : Double = carLoan * (interestRate.text.toString().toDouble()/100) * loanPeriod.text.toString().toDouble()
+            val monthlyRepayment : Double = (carLoan + interest) / loanPeriod.text.toString().toDouble() / 12
+            val textViewLoan : TextView = findViewById(R.id.textViewLoan)
+            val textViewInterest : TextView = findViewById(R.id.textViewInterest)
+            val textViewMonthlyRepayment : TextView = findViewById(R.id.textViewMonthlyRepayment)
             textViewLoan.text = String.format("%s %.2f",getString(R.string.loan),carLoan)
             textViewInterest.text = String.format("%s %.2f",getString(R.string.interest),interest)
             textViewMonthlyRepayment.text = String.format("%s %.2f",getString(R.string.monthly_repayment),monthlyRepayment)
         }
     }
     private fun reset(){
-        editTextCarPrice.text = null
-        editTextDownPayment.text = null
-        editTextLoanPeriod.text = null
-        editTextInterestRate.text = null
+        val textViewLoan : TextView = findViewById(R.id.textViewLoan)
+        val textViewInterest : TextView = findViewById(R.id.textViewInterest)
+        val textViewMonthlyRepayment : TextView = findViewById(R.id.textViewMonthlyRepayment)
+        val carPrice : EditText = findViewById(R.id.editTextCarPrice)
+        val downPayment : EditText = findViewById(R.id.editTextDownPayment)
+        val loanPeriod : EditText = findViewById(R.id.editTextLoanPeriod)
+        val interestRate : EditText = findViewById(R.id.editTextInterestRate)
+        carPrice.text.clear()
+        downPayment.text.clear()
+        loanPeriod.text.clear()
+        interestRate.text.clear()
         textViewLoan.text = getString(R.string.loan)
         textViewInterest.text = getString(R.string.interest)
         textViewMonthlyRepayment.text = getString(R.string.monthly_repayment)
